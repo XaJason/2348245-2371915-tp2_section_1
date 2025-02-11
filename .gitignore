@@ -1,0 +1,20 @@
+# Ignore everything by default
+*
+
+# Allow tracking of Makefiles
+!**/Makefile
+
+# Allow tracking of assembly files (.s)
+!**/*.s
+
+# Allow tracking of C source files (.c)
+!**/*.c
+!**/*.gitignore
+
+# Exclude compiled files and object files
+*.o
+*.out
+*.a
+*.so
+*.exe
+*.bin
