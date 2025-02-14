@@ -2,6 +2,7 @@
 lowercase_max: .byte 0x7a
 uppercase_max: .byte 0x5a
 alphabet_length: .byte 26
+
 .text
 .globl caesarASM
 caesarASM:
@@ -15,11 +16,10 @@ movl 12(%ebp), %ecx #clé
 movb lowercase_max, %bl
 movb uppercase_max, %bh
 movl alphabet_length, %eax
-decoding_loop:
+
+decode_string:
 cmpb $0, (%esi)
 je end_decoding
-
-handle_case:
 cmpb %bh, (%esi)
 jg decode_lowercase
 jmp decode_uppercase
@@ -40,7 +40,7 @@ test_limits:
 cmp %dl, (%esi)
 ja alphabet_loop
 inc %esi
-jmp decoding_loop
+jmp decode_string
 
 alphabet_loop:
 subb %al, (%esi)
