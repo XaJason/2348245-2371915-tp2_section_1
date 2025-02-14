@@ -33,17 +33,17 @@ movb %bl, %dl
 jmp apply_key
 
 apply_key:
-addl %ecx, (%esi)
+addb %cl, (%esi)
 jmp test_limits
 
 test_limits:
 cmp %dl, (%esi)
-jg alphabet_loop
+ja alphabet_loop
 inc %esi
 jmp decoding_loop
 
 alphabet_loop:
-subl %eax, (%esi)
+subb %al, (%esi)
 jmp test_limits
 
 end_decoding:
