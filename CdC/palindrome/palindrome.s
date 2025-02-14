@@ -1,4 +1,3 @@
-# Caller-saved registers: eax, ecx, edx
 .data
 taille: .byte 0
 left: .byte 0
