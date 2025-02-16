@@ -1,7 +1,6 @@
 .data
-taille: .byte 0
-left: .byte 0
-right: .byte 0
+one: .byte 1
+zero: .byte 0
 
 .text
 .globl isPalindromeASM
@@ -11,33 +10,40 @@ movl %esp, %ebp
 pushl %ebx
 movl 8(%ebp), %esi #potential palindrome
 # DEBUT COMPLETION
-#compter nombre d'éléments
-#left = (%esi) départ
-#right -> left + 8* (taille-1) (on va dire) -> le but est d'accéder le dernier élément 
-#comparer les pointeurs 
-# décrémenter right et incrémenter left
-xorl %eax, %eax # il est a 0 
-cld
-compteur: 
-lodsb #déplace esi dans eax(al)
-cmp $0,%eax
-jz comparateur
-incb taille
-jmp compteur
+movl %esi, %ebx
+movb zero, %ah
+movl $0, %edx
 
-comparateur: 
-movb taille, %cl
-#edge case: taille nulle
-movb %cl, right
-decb right
-movb right, %al
+counter:
+lodsb
+cmp %ah,%al
+jz set_pointers
+incl %edx
+jmp counter
 
+set_pointers: 
+decl %edx
+movl zero, %ecx
+movl %ebx, %esi
 
+compare_letters:
+cmp %ecx, %edx
+jbe isPalindrome
+movb (%esi, %ecx, 1), %bl
+movb (%esi, %edx, 1), %bh
+cmp %bl, %bh
+jne isNotPalindrome
+inc %ecx
+dec %edx
+jmp compare_letters
 
+isPalindrome:
+movl one, %eax
+jmp retour
 
-
-
-//jle
+isNotPalindrome:
+movl zero, %eax
+jmp retour
 
 # FIN COMPLETION
 # NE RIEN MODIFIER APRES CETTE LIGNE
