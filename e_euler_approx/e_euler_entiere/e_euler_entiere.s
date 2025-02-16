@@ -1,8 +1,15 @@
+.data
+elem0: .byte 1
+index: .byte 0
+compteur: .byte 10
+x: .long 1
+
 .text
 .globl e_euler_entiere
 
 e_euler_entiere:
 # Prologue
+
 push %ebp          #Ajustement pour utiliser EBP
 mov %esp,%ebp
 
@@ -17,6 +24,32 @@ movl 8(%ebp),%esi   # esi = iteration 10
 movl $0, -4(%ebp)    # Initialise la somme à 0 dans une variable locale
 
 # DEBUT COMPLETION
+mov $1, %eax 
+mov $0, %edx
+mov $1, %ebx #sommation
+mov $1, %ecx # assignation à 1 vu qu'il commence avec 1/0!
+
+sigma: 
+mov compteur, %bl
+mov %bl, index
+cmpb $0, index
+jnz factorielle 
+cmpb $0, compteur
+jnz sigma 
+jmp end
+
+factorielle: 
+imul x, %ebx
+incb x
+decb index
+jnz factorielle
+mov $1, eax
+div %ebx
+addl %eax, %ecx #division
+decb compteur
+mov $1, %ebx
+mov $1, x
+jmp sigma
 
 
 # FIN COMPLETION

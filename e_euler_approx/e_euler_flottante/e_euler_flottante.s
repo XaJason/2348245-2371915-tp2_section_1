@@ -13,6 +13,15 @@ reset:
 .float 0
 one:
 .float 1
+
+elem0: .byte 1
+index: .byte 3
+x: .long 1
+divisionf: .float 0
+nominateur:  .float 1 
+sommation: .float 0
+
+
 .text
 .globl e_euler_flottante
 
@@ -26,6 +35,46 @@ leal iteration, %ecx
 movl (%ecx), %ecx 
 
 # DEBUT COMPLETION
+mov $1, %eax 
+mov $0, %edx
+mov $1, %ebx
+
+
+
+sigma: 
+mov %cl, index
+cmpb $0, index
+jnz factorielle 
+cmp $0, %cl
+jnz sigma 
+jmp end
+
+
+
+factorielle: 
+imul x, %ebx
+incb x
+decb index
+jnz factorielle
+dec %ecx
+mov %ebx, divisionf # sommation possède la factorielle 
+flds nominateur 
+flds divisionf
+fdivp 
+fadds e
+fstps e
+mov $1, %ebx
+movb $1, x
+jmp sigma
+
+
+
+
+
+
+
+
+
 
 
 # FIN COMPLETION
