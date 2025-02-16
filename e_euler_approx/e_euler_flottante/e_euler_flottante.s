@@ -70,13 +70,6 @@ jmp sigma
 
 
 
-
-
-
-
-
-
-
 # FIN COMPLETION
 # NE RIEN MODIFIER APRES CETTE LIGNE
 end:
