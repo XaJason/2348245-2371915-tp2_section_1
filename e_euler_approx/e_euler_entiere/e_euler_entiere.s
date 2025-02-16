@@ -43,12 +43,12 @@ imul x, %ebx
 incb x
 decb index
 jnz factorielle
-mov $1, eax
+mov $1, %eax
 div %ebx
 addl %eax, %ecx #division
 decb compteur
 mov $1, %ebx
-mov $1, x
+movb $1, x
 jmp sigma
 
 
