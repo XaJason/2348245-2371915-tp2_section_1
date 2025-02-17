@@ -31,7 +31,7 @@ ja end
 imull %ecx, %ebx
 movl one, %eax
 movl zero, %edx
-idivl %ebx
+divl %ebx
 addl %eax, -4(%ebp)
 addl $1, %ecx
 jmp iteration

@@ -14,7 +14,6 @@ reset:
 one:
 .float 1
 
-index: .byte 3
 x: .long 1
 divisionf: .float 0
 nominateur:  .byte 1 
@@ -41,8 +40,8 @@ movb $1, nominateur
 
 
 sigma: 
-mov %cl, index
-cmpb $0, index
+mov %cl, iteration_FPU
+cmpb $0, iteration_FPU
 jnz factorielle 
 cmp $0, %cl
 jnz sigma 
@@ -50,10 +49,11 @@ jmp end
 
 
 
+
 factorielle: 
 imul x, %ebx
 incb x
-decb index
+decb iteration_FPU
 jnz factorielle
 dec %ecx
 mov %ebx, divisionf # sommation possède la factorielle 
