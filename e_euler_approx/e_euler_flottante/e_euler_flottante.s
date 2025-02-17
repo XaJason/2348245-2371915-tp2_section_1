@@ -14,12 +14,10 @@ reset:
 one:
 .float 1
 
-elem0: .byte 1
 index: .byte 3
 x: .long 1
 divisionf: .float 0
-nominateur:  .float 1 
-sommation: .float 0
+nominateur:  .byte 1 
 
 
 .text
@@ -38,6 +36,7 @@ movl (%ecx), %ecx
 mov $1, %eax 
 mov $0, %edx
 mov $1, %ebx
+movb $1, nominateur
 
 
 
@@ -58,8 +57,8 @@ decb index
 jnz factorielle
 dec %ecx
 mov %ebx, divisionf # sommation possède la factorielle 
-flds nominateur 
-flds divisionf
+flds divisionf 
+flds nominateur
 fdivp 
 fadds e
 fstps e

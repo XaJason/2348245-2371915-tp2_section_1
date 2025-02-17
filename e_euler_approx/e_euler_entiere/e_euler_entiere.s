@@ -44,10 +44,11 @@ incb x
 decb index
 jnz factorielle
 mov $1, %eax
+mov $0, %edx
 div %ebx
 addl %eax, %ecx #division
 decb compteur
-mov $1, %ebx
+movl $1, %ebx
 movb $1, x
 jmp sigma
 
