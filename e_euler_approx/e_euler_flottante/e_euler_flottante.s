@@ -18,7 +18,7 @@ elem0: .byte 1
 index: .byte 3
 x: .long 1
 divisionf: .float 0
-nominateur:  .float 1 
+nominateur:  .float 1
 sommation: .float 0
 
 
